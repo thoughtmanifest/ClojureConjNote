@@ -1,0 +1,83 @@
+pprint, pretty print 
+want it to replace java
+join? false so compojure doesn't block (get your repl back)
+
+ClojureScript
+Demo code: https://gist.github.com/1343920
+http://vimeo.com/29535884
+search "ClojureScript browser-connected REPL"
+
+watch out for the primitive math operations, use meta ^long hints in args and return types.  doesn't keep you completely safe from boxing if you pass into non-primitive supporting functions.
+
+(set! *warn-on-reflection* true)
+
+if dealing with data structures, most are in these namespaces:
+clojure.core
+clojure.set
+clojure.data
+clojure.zip
+combinatorix
+
+private functions:
+^:private
+@#'var
+OR 
+defn- (a macro)
+
+*e - last exception in repl
+*1 - last value in repl
+
+Macros:
+"a free-standing program that extends the language"
+"meta-programming"
+functional transformation from data structures to data structures
+
+macro emits code
+passed args unevaluated
+makes you think carefully about time when writing macros
+don't use them unless you need to take control of time/state
+is not about special eval properties
+
+-How to write/think about macros
+write what you want to write
+and what you want it to become
+then write macro to transform it
+use macroexpand-1 to try it at the repl
+
+"when you need polymorphism in clojure use protocol" -Stu H.
+"prototype in multimethods, and if you can live within protocol restrictions, make the switch" -Stu S.
+
+Protocols don't have to live in classes
+
+Noir - web framework
+github.com/functional-koans/clojure-koans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

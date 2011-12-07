@@ -1,0 +1,238 @@
+
+Check out Phil Potter's somewhat more complete notes, at least for day 2/3 of the conj at: https://github.com/ppotter/clojure-conj-2011-notes.git
+
+Also focus's blog post on the conj:
+http://clojure.com/blog/2011/11/17/second-conj.html
+
+Categories Key:
+-Of Immediate (U)se
+-(E)soteric
+-(I)nteresting Implementation
+Rating of topic/speaker: 1 (Meh) to 5 (Wow!)
+
+Learning Clojure - Next Steps
+STUART SIERRA
+Categories: U,E
+Rating: T4, S3
+-Mostly a survey of some advanced Clojure concepts.  
+-Of particular interest:
+--clojure.test.generative creates sets of test data, validates function against those sets given assertions provided (data type, etc), attempts to use all cores for a defined amount of time
+
+Concurrent Stream Processing
+DAVID MCNEIL
+Categories: U 
+Rating: T4, S3
+-revelytix, not yet available to the public. 
+-run large sets of data concurrently and in parallel via "streams"
+-pipes are protocols that enqueue and dequeue the data streams, nodes are the functions operating on the data
+-can split or join streams
+-pipes chunk the data for performance
+-input to a pipe provided by push, output is pulled by consumer
+-fork/join thread pool is used for execution
+
+Clojail
+ANTHONY GRIMES
+Categories: U
+Rating: T5, S3
+-Sandboxed Clojure environment, prevents dangerous side effects, i.e.:
+--I/O (interaction with file system or internet)
+--infinite loops
+--rebinding
+--execution of arbitrary programs
+--destruction of jvm
+-Hardest part of Clojure sandboxing is the state
+-Looks at the various parts of the code
+-Prevents def abuse (rebinding, memory usage)
+-Creates timeouts for loops
+-Also:
+--Customized eval contexts
+--Allows users to block anything (selective blacklisting)
+
+ClojureScript
+CHRIS HOUSER
+Categories: U,E
+Rating: T4, S4
+-Deep dive into cljs's guts
+-Top to bottom:
+--Data
+--Protocols
+--Macros
+--Compiler
+
+Striving to Make Things Simple and Fast
+PHIL BAGWELL
+Categories: E,I
+Rating: T4, S5
+-Great talk about a lot of stuff I didn't fully understand about new data structures
+
+Introduction to Logic Programming with Clojure
+AMBROSE BONNAIRE-SERGEANT
+Categories: E,I
+Rating: T4, S3
+-core.logic - (mathematical) logic programming through clojure
+-speaker was fairly new to the concepts and wasn't able to answer a lot of the questions, but slides still had good information/examples of the non-deterministic nature of logic programming
+-mentions The Reasoned Schemer for anyone interested in logic programming
+
+Hacking the Human Genome using Clojure and Similarity Search
+ARNOLDO JOSE MULLER-MOLINA
+Categories: E,I
+Rating: T5, S4
+-extremely interesting topic, mapping/defining transcription factor generation when applied to genes.
+-not a lot of code, but a very cool field where clojure is being used to predict how genes will react to different transcription factors and where those transcription factors will attach
+
+Ousterhout's Dichotomy Isn't (Part 2 of the Simplicity/Power/Focus Series)
+STUART HALLOWAY
+Categories: E
+Rating: T2, S4
+-attempt to define power like Rich defined simple, but fell short in my opinion
+
+(Neal's) Master Plan for Clojure Enterprise Mindshare Domination
+NEAL FORD
+Categories: E
+Rating: T3, S4
+-how to get clojure into corporations, not a problem at hotelicopter
+
+Predicate Dispatch
+DAVID NOLEN
+Categories: E,I
+Rating: T4, S4
+-core.match and core.logic - pattern matching
+-also mentions The Reasoned Schemer, the authors were in the audience
+
+Extending JavaScript Libraries from ClojureScript
+KEVIN LYNAGH
+Categories: U,E
+Rating: T3, S3
+-some arguments for using clojurescript over javascript.
+-would be very interested to hear T2's opinion on this talk
+-makes a comparison of javascript vs clojurescript as the imperial system vs metric system
+-namespaces and immutabiilty is safer and more extensible than globals and 'this'
+
+From Linear to Incremental
+CHRISTOPHE GRAND
+Categories: E,I
+Rating: T4, S3
+-incremental computation of parse tree after edits are made
+-lower cost
+-use associativity to only compute what has changed and what comes after in the tree
+-parsley is the implementation
+
+Logs as Data
+MARK MCGRANAGHAN
+Categories: U,I
+Rating: T4, S3
+-everything as data
+-"data via simple abstractions with a general library"
+-generating events as a stream of what is happening, able to capture and record these events
+-aggregate the streams of events which are just data structures rather than strings, easier to manipluate, destructure rather than parse, can apply normal data functions to them
+-can alert or drop events that error during processing
+-dates need a datatype?
+-github.com/heroku/pulse
+
+Modeling the world probabilistically using Bayesian networks in Clojure
+CHAS EMERICK
+Categories: E,I
+Rating: T4, S3
+-used for document analysis
+-"sometimes logic isn't enough"
+-handle multiple variables to generate a joint probability distribution, but they don't scale
+-applications:
+--process control
+--decision systems
+--prediction
+--classification
+-implementation: Raposo
+
+Clojure and Android
+DANIEL SOLANO GOMEZ
+Categories: E,I
+Rating: T3, S2
+-not easy, not really supported
+-conversion to correct package type necessary
+-benefits to having clojure on android: dynamic development
+-clojure.core is a space hog
+-Book: "Decaffeinated Android"
+
+Keynote
+RICH HICKEY
+Categories: U,E
+Rating: T5, S4
+-Language next steps, suggest watching this when it becomes available
+-phil potter has extensive notes on this talk
+
+Cascalog
+NATHAN MARZ
+Categories: U,E,I
+Rating: T5, S3
+-high level abstraction for Hadoop map-reduce
+-Hadoop:
+--high latency batch processing
+--fault tolerant
+--petabyte scale
+-abstraction and composition
+-examples were tweets and authors at twitter
+-used for implicit joining of different datasets
+-github.com/nathanmarz/cascalog-conj
+
+Functional Data Structures
+DANIEL SPIEWAK
+Categories: E
+Rating: T4, S5
+-interesting talk on functional data structures, specifically in Scala
+-sequential, associative
+-looking for immutable, asymptotic performance and structural sharing
+-a look at trees and performance
+--2-3 finger tree 
+---constant: append, prepend, first, last
+---log: insert
+---linear: concat
+---non-locality of reference, slower
+--red-black tree (clojure's sorted-map)
+---log: get, insert, update
+---linear: intersect, union
+--bitmapped vector trie (hickey/bagwell)
+---constant: append, first, last, nth, update
+---linear: concat, insert, prepend
+---locality of reference, much quicker
+---max depth in 32 bit is 7!
+
+Macronomicon
+MICHAEL FOGUS
+Categories: U,E
+Rating: T5, S3
+-main point was avoid if at all possible, same as in training
+-use cases:
+--create binding forms
+--control flow
+--abstraction
+--transformation
+--optimization
+
+Performance in the Wild
+CRAIG ANDERA
+Categories: U,E,I
+Rating: T5, S3
+-a look at performance
+-performance as a continuous concern, not a last minute effort
+-the traditional requests vs throughput graph misses out on latency
+-a more useful model:
+--distribution of latencies vs throughput for a given transaction mix
+-Optimization loop:
+--Benchmarking
+--Analysis
+--Recommend
+--Optimize
+-case study:
+--clojure wasn't the problem
+--database and logging were the main issues
+-recommend watching this video
+
+Programming Music with Overtone
+SAM AARON
+Categories: E,I
+Rating: T5, S5
+-communication with SuperCollider sound synthesization
+-create way for musicians to interact simply with the program
+-allow for markup of through symbols/patterns similar to music notation
+-able to tell that the musician is badass by their performance, not just a guy with a computer
+-monotone
